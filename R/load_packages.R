@@ -1,0 +1,20 @@
+load_packages <- function(do_it = T){
+  pkgs <- c("targets",
+            "yaml",
+            "data.table",
+            "dplyr",
+            "ggeffects",
+            "survey",
+            "surveybootstrap",
+            "tidyr",
+            "purrr",
+            "ggplot2"
+            )
+  ipak <- function(pkg){
+    new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+    if (length(new.pkg)) 
+      install.packages(new.pkg, dependencies = TRUE)
+    sapply(pkg, require, character.only = TRUE)
+  }
+  ipak(pkgs)
+}
