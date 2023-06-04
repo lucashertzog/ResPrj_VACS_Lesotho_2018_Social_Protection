@@ -1,6 +1,17 @@
+#' Title
+#'
+#' @param dir 
+#' @param dat 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
 load_dat_lso <- function(
     dir,
-    dat
+    dat,
+    name = "vacs_lso"
 ){
   vacs_lso <- read.csv(file = file.path(config$indir_lso, config$indat_lso))
   
@@ -66,7 +77,8 @@ load_dat_lso <- function(
       # vacs_lso[[variable]] <- factor(vacs_lso[[variable]], levels = c(0, 1), exclude = NULL)
     }
   }
-vacs_lso
+  # Return the modified data frame
+  return(vacs_lso)
 }
 
 

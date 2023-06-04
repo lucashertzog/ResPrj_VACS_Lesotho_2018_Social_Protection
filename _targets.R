@@ -26,7 +26,7 @@ list(
     dat_lso, 
     load_dat_lso(
       dir,
-      dat
+      dat,
     )
   )
   ,
@@ -39,45 +39,40 @@ list(
     )
   )
   ,
-  #### ANALYSIS ####
-  #### dat_descriptives ####
-  # define variables #
+  #### SELECT VARIABLES ####
+  #### outcome_var ####
   tar_target(
-    dat_descriptives,
-    do_pick_vars(
+    outcome_var,
+    do_pick_outcome_var(
       dat_svy_design
     )
   )
   ,
-  #### calc_descr_weighted_ci ####
+  #### pred_var ####
   tar_target(
-    calc_descr_weighted_ci,
-    do_descr_weighted_ci(
-      dat_descriptives
+    pred_var,
+    do_pick_pred_var(
+      dat_svy_design
     )
   )
   ,
-  #### calc_descr_mean_sd ####
+  #### control_var ####
   tar_target(
-    calc_descr_mean_sd,
-    do_descr_mean_sd(
-      dat_descriptives
+    control_var,
+    do_pick_control_var(
+      dat_svy_design
     )
   )
   ,
-  #### calc_descr_sex_diff ####
-  tar_target(
-    calc_descr_sex_diff,
-    do_descr_sex_diff(
-      dat_descriptives
-    )
-  )
-  ,
+  #### ANALYSIS ####
   #### calc_logistic_regression ####
   tar_target(
     calc_logistic_regression,
     do_logistic_regression(
-      dat_svy_design
+      dat_svy_design,
+      outcome_var,
+      pred_var,
+      control_var
     )
   )
   ,
@@ -85,26 +80,20 @@ list(
   tar_target(
     calc_marginal_effects,
     do_marginal_effects(
-      calc_logistic_regression
+      outcome_var,
+      pred_var,
+      control_var,
+      dat_svy_design
     )
   )
   ,
   #### TABLES ####
-  #### table_descriptive ####
-  tar_target(
-    table_descriptive,
-    do_table_descriptive(
-      calc_descr_weighted_ci,
-      calc_descr_mean_sd,
-      calc_descr_sex_diff
-    )
-  )
-  ,
   #### table_regressions ####
   tar_target(
     table_regressions,
     do_table_regressions(
       calc_logistic_regression,
+      pred_var
     )
   )
   ,
@@ -115,21 +104,21 @@ list(
       calc_marginal_effects,
     )
   )
-  ,
-  #### FIGURES ####
-  #### plot_regressions ####
-  tar_target(
-    plot_regressions,
-    do_plot_regressions(
-        calc_logistic_regression
-    )
-  )
-  ,
-  #### plot_marginal_effects ####
-  tar_target(
-    plot_marginal_effects,
-    do_plot_marginal_effects(
-      calc_marginal_effects
-    )
-  )
+  # ,
+  # #### FIGURES ####
+  # #### plot_regressions ####
+  # tar_target(
+  #   plot_regressions,
+  #   do_plot_regressions(
+  #       calc_logistic_regression
+  #   )
+  # )
+  # ,
+  # #### plot_marginal_effects ####
+  # tar_target(
+  #   plot_marginal_effects,
+  #   do_plot_marginal_effects(
+  #     calc_marginal_effects
+  #   )
+  # )
 )

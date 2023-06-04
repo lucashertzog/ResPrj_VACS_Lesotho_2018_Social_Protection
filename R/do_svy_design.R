@@ -1,5 +1,15 @@
+#' Title
+#'
+#' @param vacs_lso 
+#'
+#' @return design
+#' @export
+#'
+#' @examples
+
 do_svy_design <- function(
-    survey_design
+    vacs_lso,
+    name = "design"
 ){
   design <- survey::svydesign(
     id = ~ psu,
@@ -8,5 +18,5 @@ do_svy_design <- function(
     data = vacs_lso,
     single = "centered"
   )
-  design
+  return(design)
 }

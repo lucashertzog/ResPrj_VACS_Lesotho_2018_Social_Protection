@@ -8,7 +8,9 @@ load_packages <- function(do_it = T){
             "surveybootstrap",
             "tidyr",
             "purrr",
-            "ggplot2"
+            "ggplot2",
+            "flextable",
+            "officer"
             )
   ipak <- function(pkg){
     new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]

@@ -1,36 +1,25 @@
+#' Title
+#'
+#' @param design
+#'
+#' @return results_list
+#' @export
+#'
+#' @examples
+
 do_logistic_regression <- function(
-    log_reg
+    design,  
+    outcome_var,
+    pred_var,
+    control_var
+    
   ){
-
-outcome_variables <- c(
-  "edu_enrol",
-  "edu_attainment",
-  "edu_ecostr_work",
-  "srh_condom_use",
-  "srh_multiple_partners",
-  "srh_transactional",
-  "srh_child_marriage"
-)
-
-pred_var <- c(
-  "sp_non_gov",
-  "sp_gov",
-  "sp_double",
-  "sp_any"
-)
-
-control_var <- c(
-  "age",
-  "sex",
-  "hiv",
-  "orphan"
-)
 
 # Create an empty list to store the results
 results_list <- list()
 
 # Iterate over the outcome variables
-for (outcome in outcome_variables) {
+for (outcome in outcome_var) {
   # Create an empty data frame to store the results for the current outcome
   outcome_results <- data.frame()
 
@@ -89,5 +78,6 @@ for (outcome in outcome_variables) {
 
   # Store the results for the current outcome in the list
   results_list[[outcome]] <- outcome_results
-  }
+}
+return(results_list)
 }
