@@ -29,10 +29,10 @@ for (outcome in outcome_var) {
     
     # Use ggpredict to compute the marginal effects and store them in a data frame
     marginal_effects <- ggpredict(fit, terms = predictor, data = vacs_lso)
-    
+  }
     # Add the data frame to the list
     marginal_effects_list[[paste(outcome, predictor, sep = "_")]] <- marginal_effects
-  }
+  
 }
 return(marginal_effects_list)
 }

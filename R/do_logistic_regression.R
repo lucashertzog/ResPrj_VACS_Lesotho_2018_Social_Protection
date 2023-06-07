@@ -57,10 +57,11 @@ for (outcome in outcome_var) {
     p_values <- 2 * (1 - pnorm(abs(z_scores)))
 
     # Print in a simplified format
-    p_values <- sprintf("%.3f", p_values)
+    p_values <- sprintf("%.4f", p_values)
     ci_lower <- sprintf("%.2f", ci_lower)
     ci_upper <- sprintf("%.2f", ci_upper)
 
+   
     # Format p-values with asterisks
     p_values_formatted <- ifelse(p_values <= 0.001, paste0(p_values, "***"),
                                  ifelse(p_values <= 0.01, paste0(p_values, "**"),

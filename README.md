@@ -20,7 +20,7 @@ This pipeline performs a series of data analysis tasks using the {targets} packa
 
 6. **Tables**: The results are formatted into tables using the `do_table_regressions` and `do_table_marginal_effects` functions.
 
-7. **Figures**: The results are visualized using the `do_plot_regressions` and `do_plot_marginal_effects` functions. -->
+7. **Figures**: The results are visualized using the `do_plot_regressions` and `do_plot_marginal_effects` functions.
 
 The pipeline is executed using the "targets" package, which manages the dependencies between the different steps and ensures efficient and reproducible computation.
 

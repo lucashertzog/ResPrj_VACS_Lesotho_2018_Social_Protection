@@ -65,6 +65,6 @@ do_table_marginal_effects <- function(
   doc <- flextable::body_add_flextable(doc, table)
   
   # Save the table to a Word file
-  file_name <- file.path(config$outdir_lso, "marginal_effects_table.docx")
-  print(doc, target = file_name)
+  print(doc, target = "table_marginal_effects.docx")
+  
 }

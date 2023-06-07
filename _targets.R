@@ -65,7 +65,7 @@ list(
   )
   ,
   #### ANALYSIS ####
-  #### calc_logistic_regression ####
+    #### calc_logistic_regression ####
   tar_target(
     calc_logistic_regression,
     do_logistic_regression(
@@ -88,6 +88,17 @@ list(
   )
   ,
   #### TABLES ####
+  #### table_summary_stats ####
+  # tar_target(
+  #   table_summary_stats,
+  #   do_table_summary_stats(
+  #     dat_svy_design,
+  #     outcome_var,
+  #     pred_var,
+  #     control_var
+  #   )
+  # )
+  # ,
   #### table_regressions ####
   tar_target(
     table_regressions,
@@ -99,9 +110,9 @@ list(
   ,
   #### table_marginal_effects ####
   tar_target(
-    table_marginal_effects,
+    table_marginal_effects, 
     do_table_marginal_effects(
-      calc_marginal_effects,
+      calc_marginal_effects
     )
   )
   # ,
