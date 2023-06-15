@@ -22,8 +22,8 @@ do_table_marginal_effects <- function(
   # Loop through each data frame in the marginal_effects_list
   for (i in seq_along(
     marginal_effects_list
-    )
-    ){
+  )
+  ){
     df_name <- names(marginal_effects_list)[i]  # Get the data frame name
     df <- marginal_effects_list[[i]]
     
@@ -41,6 +41,8 @@ do_table_marginal_effects <- function(
       df_name = df_name,
       x = x_val,
       predicted = predicted_val,
+      conf_low_val = conf_low_val,
+      conf_high_val = conf_high_val,
       confidence_interval = conf_interval,
       stringsAsFactors = FALSE
     )
@@ -49,6 +51,7 @@ do_table_marginal_effects <- function(
     combined_results <- rbind(combined_results, data)
   }
   
+  
   # Create a Word document
   doc <- officer::read_docx()
   
@@ -56,15 +59,16 @@ do_table_marginal_effects <- function(
   table <- flextable::flextable(combined_results)
   
   # Format table appearance
-  table <- flextable::theme_booktabs(table)  # Apply booktabs theme
-  
-  # Add borders to the table
-  table <- flextable::border_remove(table)
+  table <- flextable::theme_apa(table)
+  table <- flextable::line_spacing(table, space = 1, part = "all")
+  table <- flextable::set_table_properties(table, layout = "autofit")
   
   # Add the table to the Word document
   doc <- flextable::body_add_flextable(doc, table)
   
   # Save the table to a Word file
-  print(doc, target = "table_marginal_effects.docx")
-  
+  file_name <- file.path(config$outdir_lso, "table_marginal_effects.docx")
+  print(doc, target = file_name)
 }
+
+

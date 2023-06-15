@@ -1,22 +1,12 @@
-#' Title
-#'
-#' @param design
-#'
-#' @return results_list
-#' @export
-#'
-#' @examples
-
 do_logistic_regression <- function(
-    design, 
+    girls,
+    design,
     outcome_var,
     pred_var,
-    control_var,
-    vacs_lso
-){ 
-  
+    stratified_control_var
+) {
   # Create an empty list to store the results
-  results_list <- list()
+  results_list_girls <- list()
   
   # Iterate over the outcome variables
   for (outcome in outcome_var) {
@@ -32,11 +22,12 @@ do_logistic_regression <- function(
           "~",
           predictor,
           "+",
-          paste(control_var, collapse = " + ")),
+          paste(stratified_control_var, collapse = " + ")),
         design = design,
         family = binomial(),
         data = vacs_lso
       )
+      
       
       # Extract adjusted odds ratios and round to 2 decimal places
       odds_ratios <- round(exp(coef(fit)), 2)
@@ -61,7 +52,6 @@ do_logistic_regression <- function(
       ci_lower <- sprintf("%.2f", ci_lower)
       ci_upper <- sprintf("%.2f", ci_upper)
       
-      
       # Format p-values with asterisks
       p_values_formatted <- ifelse(p_values <= 0.001, paste0(p_values, "***"),
                                    ifelse(p_values <= 0.01, paste0(p_values, "**"),
@@ -72,13 +62,11 @@ do_logistic_regression <- function(
       
       # Append the predictor results to the outcome results
       aOR <- paste0(odds_ratios, " (", ci_lower, " to ", ci_upper, ")")
-      
       outcome_results <- rbind(outcome_results, predictor_results)
-      
     }
     
     # Store the results for the current outcome in the list
-    results_list[[outcome]] <- outcome_results
+    results_list_girls[[outcome]] <- outcome_results
   }
-  return(results_list)
+  return(results_list_girls)
 }

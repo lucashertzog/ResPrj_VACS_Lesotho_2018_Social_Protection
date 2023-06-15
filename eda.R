@@ -115,4 +115,6 @@ tbl <-
     tab_spanner = c("**Univariate**", "**Multivariable**")
   )
 
-                       
+
+
+

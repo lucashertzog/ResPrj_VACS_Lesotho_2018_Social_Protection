@@ -82,10 +82,9 @@ for (i in seq_len(nrow(df_labels))) {
 ft_combined <- flextable::flextable(combined_results_wide)
 
 # Format table appearance
-ft_combined <- flextable::theme_booktabs(ft_combined)  # Apply booktabs theme
-
-# Add borders to the table
-ft_combined <- flextable::border_remove(ft_combined)
+ft_combined <- flextable::theme_apa(ft_combined)
+ft_combined <- flextable::line_spacing(ft_combined, space = 1, part = "all")
+ft_combined <- flextable::set_table_properties(ft_combined, layout = "autofit")
 
 # Create a Word document and Add the table
 doc <- officer::read_docx()
