@@ -11,10 +11,10 @@
 #' @examples
 
 do_table_summary_stats <- function(
-    design,
     outcome_var,
     pred_var,
-    control_var
+    control_var,
+    design
 ){
 
 t <- gtsummary::tbl_svysummary(
@@ -23,17 +23,13 @@ t <- gtsummary::tbl_svysummary(
   missing = "no",
   include = c(age, age_group, control_var, pred_var, outcome_var),
   statistic = list(age ~ "{mean} ({sd})", all_categorical() ~ "{p}%"),
-  statistic = age ~ "{mean} ({sd})",
   type = age ~ "continuous",
-  label = age ~ "Age",
-  ) %>%
-  gtsummary::add_p(
-  ) %>%
+  label = age ~ "Age"
+) %>%
+  gtsummary::add_p() %>%
   gtsummary::separate_p_footnotes() %>%
   gtsummary::add_significance_stars() %>%
-  gtsummary::add_ci(
-    include = all_categorical()
-  ) %>%
+  gtsummary::add_ci(include = all_categorical()) %>%
   gtsummary::add_overall() %>%
   gtsummary::modify_header(
     label = "**Characteristic**",
@@ -54,6 +50,6 @@ t <- gtsummary::tbl_svysummary(
 # Save to a docx file
 t %>%
   as_flex_table()%>%
-  save_as_docx(path = file.path(config$outdir_lso, "table_summary_stats.docx"))
+  save_as_docx(path = file.path(config$outdir_lso, config$outdat_t1))
 }
 

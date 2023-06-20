@@ -21,7 +21,7 @@ tar_option_set(
 
 
 list(
-  #### LOAD DATA ####
+  ### LOAD DATA ####
   #### dat_lso ####
   tar_target(
     dat_lso, 
@@ -31,7 +31,7 @@ list(
     )
   )
   ,
-  #### DECLARE SURVEY DESIGN ####
+  ### DECLARE SURVEY DESIGN ####
   #### dat_svy_design ####
   tar_target(
     dat_svy_design,
@@ -40,7 +40,7 @@ list(
     )
   )
   ,
-  #### SELECT VARIABLES ####
+  ### SELECT VARIABLES ####
   #### dat_outcome_var ####
   tar_target(
     dat_outcome_var,
@@ -74,28 +74,28 @@ list(
   )
   ,
   #### stratified_girls_subset ####
-  tar_target(
-    stratified_girls_subset,
-    do_pick_girls(
-      dat_svy_design,
-      dat_stratified_control_var,
-      dat_outcome_var,
-      dat_pred_var
-    )
-  )
-  ,
-  #### stratified_girls_subset ####
-  tar_target(
-    stratified_boys_subset,
-    do_pick_boys(
-      dat_svy_design,
-      dat_stratified_control_var,
-      dat_outcome_var,
-      dat_pred_var
-    )
-  )
-  ,
-  #### ANALYSIS ####
+  # tar_target(
+  #   stratified_girls_subset,
+  #   do_pick_girls(
+  #     dat_svy_design,
+  #     dat_stratified_control_var,
+  #     dat_outcome_var,
+  #     dat_pred_var
+  #   )
+  # )
+  # ,
+  # #### stratified_boys_subset ####
+  # tar_target(
+  #   stratified_boys_subset,
+  #   do_pick_boys(
+  #     dat_svy_design,
+  #     dat_stratified_control_var,
+  #     dat_outcome_var,
+  #     dat_pred_var
+  #   )
+  # )
+  # ,
+  ### ANALYSIS ####
   #### calc_logistic_regression ####
   tar_target(
     calc_logistic_regression,
@@ -108,29 +108,27 @@ list(
   )
   ,
   #### calc_logistic_regression_girls ####
-  # tar_target(
-  #   calc_logistic_regression_girls,
-  #   do_logistic_regression_girls(
-  #     stratified_girls_subset,
-  #     dat_svy_design,
-  #     dat_stratified_control_var,
-  #     dat_outcome_var,
-  #     dat_pred_var
-  #   )
-  # )
-  # ,
+  tar_target(
+    calc_logistic_regression_girls,
+    do_logistic_regression_girls(
+      dat_outcome_var,
+      dat_pred_var,
+      dat_stratified_control_var,
+      dat_svy_design
+    )
+  )
+  ,
   # #### calc_logistic_regression_boys ####
-  # tar_target(
-  #   calc_logistic_regression_boys,
-  #   do_logistic_regression_boys(
-  #     stratified_boys_subset,
-  #     dat_svy_design,
-  #     dat_stratified_control_var,
-  #     dat_outcome_var,
-  #     dat_pred_var
-  #   )
-  # )
-  # ,
+  tar_target(
+    calc_logistic_regression_boys,
+    do_logistic_regression_boys(
+      dat_outcome_var,
+      dat_pred_var,
+      dat_stratified_control_var,
+      dat_svy_design
+    )
+  )
+  ,
   #### calc_marginal_effects ####
   tar_target(
     calc_marginal_effects,
@@ -141,37 +139,37 @@ list(
       dat_svy_design
     )
   )
-  # ,
-  #### TABLES ####
+  ,
+  ### TABLES ####
   #### table_summary_stats ####
-  # tar_target(
-  #   table_summary_stats,
-  #   do_table_summary_stats(
-  #     dat_svy_design,
-  #     outcome_var,
-  #     pred_var,
-  #     control_var
-  #   )
-  # )
-  # ,
+  tar_target(
+    table_summary_stats,
+    do_table_summary_stats(
+      dat_outcome_var,
+      dat_pred_var,
+      dat_control_var,
+      dat_svy_design
+    )
+  )
+  ,
   #### table_regressions ####
-  # tar_target(
-  #   table_regressions,
-  #   do_table_regressions(
-  #     calc_logistic_regression,
-  #     dat_pred_var
-  #   )
-  # )
-  # ,
+  tar_target(
+    table_regressions,
+    do_table_regressions(
+      calc_logistic_regression,
+      dat_pred_var
+    )
+  )
+  ,
   # #### table_marginal_effects ####
-  # tar_target(
-  #   table_marginal_effects, 
-  #   do_table_marginal_effects(
-  #     calc_marginal_effects
-  #   )
-  # )
+  tar_target(
+    table_marginal_effects,
+    do_table_marginal_effects(
+      calc_marginal_effects
+    )
+  )
   # ,
-  # #### FIGURES ####
+  # ### FIGURES ####
   # #### plot_regressions ####
   # tar_target(
   #   plot_regressions,

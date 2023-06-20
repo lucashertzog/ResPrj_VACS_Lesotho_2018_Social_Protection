@@ -47,7 +47,7 @@ load_dat_lso <- function(
     "individual_weight",
     "psu",
     "age", 
-    "age_group", 
+    "age_group",
     "sex", 
     "hiv", 
     "orphan", 
@@ -68,10 +68,10 @@ load_dat_lso <- function(
   
   # Loop through the variables and convert if they are strings
   for (variable in new_order) {
-    if (is.character(vacs_lso[[variable]]) && !(variable %in% c("district", 
-                                                 "individual_weight", 
-                                                 "psu", 
-                                                 "age_group", 
+    if (is.character(vacs_lso[[variable]]) && !(variable %in% c("district",
+                                                 "individual_weight",
+                                                 "psu",
+                                                 "age_group",
                                                  "age"))
       ){
       vacs_lso[[variable]] <- ifelse(vacs_lso[[variable]] == "Yes", 1, ifelse(vacs_lso[[variable]] == "No", 0, NA))
@@ -81,9 +81,7 @@ load_dat_lso <- function(
   
   # conversions
   vacs_lso$age <- as.numeric(vacs_lso$age)
-  vacs_lso$sp_non_gov <- as.integer(vacs_lso$sp_non_gov)
-  vacs_lso$sp_double <- as.integer(vacs_lso$sp_double)
-  
+
   # Label variables
   var.labels <- c(
     district = "District",
@@ -105,12 +103,12 @@ load_dat_lso <- function(
     srh_transactional = "Transactional sex",
     srh_child_marriage = "Child marriage"
   )
-  
+
   Hmisc::label(vacs_lso) = as.list(var.labels[
     match(names(vacs_lso),
           names(var.labels))
   ])
- 
+
   # Return the modified data frame
   return(vacs_lso)
 }
