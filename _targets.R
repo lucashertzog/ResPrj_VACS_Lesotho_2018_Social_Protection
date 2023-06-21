@@ -158,6 +158,28 @@ list(
     )
   )
   ,
+  #### calc_marginal_effects_girls ####
+  tar_target(
+    calc_marginal_effects_girls,
+    do_marginal_effects_girls(
+      dat_outcome_var,
+      dat_pred_var,
+      dat_stratified_control_var,
+      dat_svy_design_girls
+    )
+  )
+  ,
+  #### calc_marginal_effects_boys ####
+  tar_target(
+    calc_marginal_effects_boys,
+    do_marginal_effects_boys(
+      dat_outcome_var,
+      dat_pred_var,
+      dat_stratified_control_var,
+      dat_svy_design_boys
+    )
+  )
+  ,
   ### TABLES ####
   ### table_summary_stats ####
   tar_target(
@@ -181,15 +203,17 @@ list(
     )
   )
   ,
-  # #### table_marginal_effects ####
+  #### table_marginal_effects ####
   tar_target(
     table_marginal_effects,
     do_table_marginal_effects(
-      calc_marginal_effects
+      calc_marginal_effects,
+      calc_marginal_effects_girls,
+      calc_marginal_effects_boys
     )
   )
   # ,
-  # ### FIGURES ####
+  ### FIGURES ####
   # #### plot_regressions ####
   # tar_target(
   #   plot_regressions,
@@ -198,7 +222,7 @@ list(
   #   )
   # )
   # ,
-  # #### plot_marginal_effects ####
+  #### plot_marginal_effects ####
   # tar_target(
   #   plot_marginal_effects,
   #   do_plot_marginal_effects(

@@ -32,11 +32,23 @@ for (outcome in outcome_var) {
       data = vacs_lso
     )
     
+    # Compute p-values for the predictor variable
+    coef_summary <- coef(summary(fit))
+    p_values <- coef_summary[, "Pr(>|t|)"]
+    
+    # Perform Benjamini-Hochberg adjustment
+    adjusted_p_values <- p.adjust(p_values, method = "BH")
+    
+    # Check if the predictor is significant (adjusted p-value <= 0.05)
+    if (adjusted_p_values[predictor] <= 0.05) {
+    
     # Use ggpredict to compute the marginal effects and store them in a data frame
     marginal_effects <- ggpredict(fit, terms = predictor, data = vacs_lso)
+    
     # Add the data frame to the list
     marginal_effects_list[[paste(outcome, predictor, sep = "_")]] <- marginal_effects
     }
+  }
 }
 return(marginal_effects_list)
 }
