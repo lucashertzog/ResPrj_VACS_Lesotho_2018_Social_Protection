@@ -15,8 +15,14 @@ tar_option_set(
       "surveybootstrap",
       "tidyr",
       "purrr",
-      "ggplot2"
-    ),
+      "ggplot2",
+      "flextable",
+      "officer",
+      "gtsummary",
+      "gt",
+      "Hmisc",
+      "haven"
+    )
   )
 
 
@@ -31,12 +37,45 @@ list(
     )
   )
   ,
+  ### CREATE SUBSETS GIRLS/BOYS ####
+  #### stratified_girls_subset ####
+  tar_target(
+    stratified_girls_subset,
+    do_pick_girls(
+      dat_lso
+    )
+  )
+  ,
+  #### stratified_boys_subset ####
+  tar_target(
+    stratified_boys_subset,
+    do_pick_boys(
+      dat_lso
+    )
+  )
+  ,
   ### DECLARE SURVEY DESIGN ####
   #### dat_svy_design ####
   tar_target(
     dat_svy_design,
     do_svy_design(
       dat_lso
+    )
+  )
+  ,
+  #### dat_svy_design_girls ####
+  tar_target(
+    dat_svy_design_girls,
+    do_svy_design_girls(
+      stratified_girls_subset
+    )
+  )
+  ,
+  #### dat_svy_design_boys ####
+  tar_target(
+    dat_svy_design_boys,
+    do_svy_design_boys(
+      stratified_boys_subset
     )
   )
   ,
@@ -73,28 +112,7 @@ list(
     )
   )
   ,
-  #### stratified_girls_subset ####
-  # tar_target(
-  #   stratified_girls_subset,
-  #   do_pick_girls(
-  #     dat_svy_design,
-  #     dat_stratified_control_var,
-  #     dat_outcome_var,
-  #     dat_pred_var
-  #   )
-  # )
-  # ,
-  # #### stratified_boys_subset ####
-  # tar_target(
-  #   stratified_boys_subset,
-  #   do_pick_boys(
-  #     dat_svy_design,
-  #     dat_stratified_control_var,
-  #     dat_outcome_var,
-  #     dat_pred_var
-  #   )
-  # )
-  # ,
+  
   ### ANALYSIS ####
   #### calc_logistic_regression ####
   tar_target(
@@ -114,7 +132,7 @@ list(
       dat_outcome_var,
       dat_pred_var,
       dat_stratified_control_var,
-      dat_svy_design
+      dat_svy_design_girls
     )
   )
   ,
@@ -125,7 +143,7 @@ list(
       dat_outcome_var,
       dat_pred_var,
       dat_stratified_control_var,
-      dat_svy_design
+      dat_svy_design_boys
     )
   )
   ,
@@ -141,7 +159,7 @@ list(
   )
   ,
   ### TABLES ####
-  #### table_summary_stats ####
+  ### table_summary_stats ####
   tar_target(
     table_summary_stats,
     do_table_summary_stats(
@@ -157,6 +175,8 @@ list(
     table_regressions,
     do_table_regressions(
       calc_logistic_regression,
+      calc_logistic_regression_girls,
+      calc_logistic_regression_boys,
       dat_pred_var
     )
   )

@@ -50,6 +50,6 @@ t <- gtsummary::tbl_svysummary(
 # Save to a docx file
 t %>%
   as_flex_table()%>%
-  save_as_docx(path = file.path(config$outdir_lso, config$outdat_t1))
+  save_as_docx(path = file.path(config$outdir_lso, config$outdat_summary))
 }
 

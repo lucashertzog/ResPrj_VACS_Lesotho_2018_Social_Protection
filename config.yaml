@@ -1,4 +1,8 @@
+## set directories ##
 indir_lso: "C:/Users/291828h/OneDrive - Curtin/projects/ResPrj_VACS_Lesotho_2019_Social_Protection/data_provided" 
 indat_lso: "vacs_lso_2019.csv"
 outdir_lso: "C:/Users/291828h/OneDrive - Curtin/projects/ResPrj_VACS_Lesotho_2019_Social_Protection/data_derived"
-outdat_t1: "table_summary_stats.docx"
+
+## tables ##
+outdat_summary: "table_summary_stats.docx"
+outdat_log: "table_logistic_regression.docx"
