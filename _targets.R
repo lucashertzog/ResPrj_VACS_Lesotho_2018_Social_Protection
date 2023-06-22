@@ -21,7 +21,8 @@ tar_option_set(
       "gtsummary",
       "gt",
       "Hmisc",
-      "haven"
+      "haven",
+      "apaTables"
     )
   )
 
@@ -206,6 +207,15 @@ list(
   )
   ,
   ### TABLES ####
+  #### table_correlations ####
+  tar_target(
+    table_correlations,
+    do_table_correlations(
+      dat_outcome_var,
+      dat_lso
+    )
+  )
+  ,
   #### table_summary_stats ####
   tar_target(
     table_summary_stats,

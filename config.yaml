@@ -8,6 +8,7 @@ outdir_lso: "C:/Users/291828h/OneDrive - Curtin/projects/ResPrj_VACS_Lesotho_201
 
 ## tables ##
 outdat_summary: "table_summary_stats.docx"
+outdat_correlation: "table_correlation.doc"
 outdat_log: "table_logistic_regression.docx"
 outdat_marg: "table_marginal_effects.docx"
 
