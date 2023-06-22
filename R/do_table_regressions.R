@@ -138,9 +138,10 @@ do_table_regressions <- function(
       "aOR (95% CI) ngov" = aOR_CI_sp_non_gov,
       "p-Value" = p_values_sp_non_gov,
       "aOR (95% CI) gov" = aOR_CI_sp_gov,
-      p_values_sp_gov,
-      "aOR (95% CI) any" = aOR_CI_sp_any,
-      p_values_sp_any
+      p_values_sp_gov
+      # ,
+      # "aOR (95% CI) any" = aOR_CI_sp_any,
+      # p_values_sp_any
     )
   
   # Convert combined_results_girls to wide format
@@ -152,9 +153,10 @@ do_table_regressions <- function(
       aOR_CI_sp_non_gov,
       p_values_sp_non_gov,
       aOR_CI_sp_gov,
-      p_values_sp_gov,
-      aOR_CI_sp_any,
-      p_values_sp_any
+      p_values_sp_gov
+      # ,
+      # aOR_CI_sp_any,
+      # p_values_sp_any
     )
   
   # Convert combined_results_boys to wide format
@@ -166,9 +168,10 @@ do_table_regressions <- function(
       aOR_CI_sp_non_gov,
       p_values_sp_non_gov,
       aOR_CI_sp_gov,
-      p_values_sp_gov,
-      aOR_CI_sp_any,
-      p_values_sp_any
+      p_values_sp_gov
+      # ,
+      # aOR_CI_sp_any,
+      # p_values_sp_any
     )
   
   # Create a flextable object for each combined results data frame

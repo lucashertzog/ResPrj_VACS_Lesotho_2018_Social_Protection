@@ -12,4 +12,4 @@ outdat_log: "table_logistic_regression.docx"
 outdat_marg: "table_marginal_effects.docx"
 
 ## figures ##
-outdat_plot_pp: "figure_pp.png"
+outdat_plot_pp: "figure_pp.jpeg"

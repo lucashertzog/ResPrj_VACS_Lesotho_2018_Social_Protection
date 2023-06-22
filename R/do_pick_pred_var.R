@@ -11,8 +11,7 @@ do_pick_pred_var <- function(
 ){
   pred_var <- c(
   "sp_non_gov",
-  "sp_gov",
-  "sp_any"
+  "sp_gov"
 )
     return(pred_var)
 }

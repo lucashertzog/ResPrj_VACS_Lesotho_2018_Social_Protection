@@ -180,8 +180,33 @@ list(
     )
   )
   ,
+  ### COMBINE RESULTS FOR OUTPUTS ####
+  #### combined_results ####
+  tar_target(
+    combined_results,
+    do_marginal_effects_combine(
+      calc_marginal_effects
+    )
+  )
+  ,
+  #### combined_results_girls ####
+  tar_target(
+    combined_results_girls,
+    do_marginal_effects_combine_girls(
+      calc_marginal_effects_girls
+    )
+  )
+  ,
+  #### combined_results_girls ####
+  tar_target(
+    combined_results_boys,
+    do_marginal_effects_combine_boys(
+      calc_marginal_effects_boys
+    )
+  )
+  ,
   ### TABLES ####
-  ### table_summary_stats ####
+  #### table_summary_stats ####
   tar_target(
     table_summary_stats,
     do_table_summary_stats(
@@ -207,26 +232,26 @@ list(
   tar_target(
     table_marginal_effects,
     do_table_marginal_effects(
-      calc_marginal_effects,
-      calc_marginal_effects_girls,
-      calc_marginal_effects_boys
+      combined_results,
+      combined_results_girls,
+      combined_results_boys
     )
   )
-  # ,
-  ### FIGURES ####
-  # #### plot_regressions ####
-  # tar_target(
-  #   plot_regressions,
-  #   do_plot_regressions(
-  #       calc_logistic_regression
-  #   )
-  # )
-  # ,
-  #### plot_marginal_effects ####
-  # tar_target(
-  #   plot_marginal_effects,
-  #   do_plot_marginal_effects(
-  #     calc_marginal_effects
-  #   )
-  # )
+  ,
+  # ### FIGURES ####
+  # # #### plot_regressions ####
+  # # tar_target(
+  # #   plot_regressions,
+  # #   do_plot_regressions(
+  # #       calc_logistic_regression
+  # #   )
+  # # )
+  # # ,
+  # ### plot_marginal_effects ####
+  tar_target(
+    plot_marginal_effects,
+    do_plot_marginal_effects(
+      combined_results
+    )
+  )
 )
