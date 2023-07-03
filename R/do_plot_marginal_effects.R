@@ -20,5 +20,6 @@ do_plot_marginal_effects <- function(
     facet_wrap(~sub(".*_", "", df_name), ncol = 3)  # Split into two columns based on df_name suffix
 
   ggsave(file.path(config$outdir_lso, config$outdat_plot_pp), plot, width = 10, height = 8, dpi = 600)
+  return(plot)
 }
 

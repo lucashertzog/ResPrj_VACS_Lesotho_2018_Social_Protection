@@ -204,4 +204,6 @@ do_table_regressions <- function(
   # Save the document with tables to a Word file
   file_name <- file.path(config$outdir_lso, config$outdat_log)
   print(doc, target = file_name)
+  
+  return(combined_results_wide)
 } 
