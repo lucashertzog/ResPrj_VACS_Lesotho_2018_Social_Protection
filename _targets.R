@@ -247,7 +247,7 @@ list(
       combined_results_boys
     )
   )
-  ,
+  # ,
   # ### FIGURES ####
   # # #### plot_regressions ####
   # # tar_target(
@@ -258,10 +258,10 @@ list(
   # # )
   # # ,
   # ### plot_marginal_effects ####
-  tar_target(
-    plot_marginal_effects,
-    do_plot_marginal_effects(
-      combined_results
-    )
-  )
+  # tar_target(
+  #   plot_marginal_effects,
+  #   do_plot_marginal_effects(
+  #     combined_results
+  #   )
+  # )
 )

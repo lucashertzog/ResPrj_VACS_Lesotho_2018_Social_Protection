@@ -21,19 +21,45 @@ do_marginal_effects_combine_boys <- function(
     conf_low_val <- round(df$conf.low * 100, 1)
     conf_high_val <- round(df$conf.high * 100, 1)
     
+    # Calculate the difference in predicted values and the confidence interval
+    dif_pred <- predicted_val[x_val == 1] - predicted_val[x_val == 0]
+    
+    # Calculate the lower and upper bounds of the confidence interval
+    dif_conf_low_val <- dif_pred - (df$std.error * 1.96)
+    dif_conf_high_val <- dif_pred + (df$std.error * 1.96)
+    
     # Create a combined cell for the confidence interval
     conf_interval <- paste(conf_low_val, "–", conf_high_val)
     
     # Create a data frame with the extracted values
     data_boys <- data.frame(
-      df_name = df_name,
-      x = x_val,
-      predicted = predicted_val,
-      conf_low_val = conf_low_val,
-      conf_high_val = conf_high_val,
-      confidence_interval = conf_interval,
+      Boys = df_name,
+      Unprotected = ifelse(
+        x_val == 0, 
+        paste(predicted_val, " (", conf_interval, ")", sep = ""), 
+        NA),
+      SocialProtection = ifelse(
+        x_val == 1, 
+        paste(predicted_val, " (", conf_interval, ")", sep = ""), 
+        NA),
+      Diff.Prob. = paste(
+        dif_pred,
+        " (",
+        round(dif_conf_low_val, 1),
+        " – ",
+        round(dif_conf_high_val, 1),
+        ")",
+        sep = ""
+      ),
       stringsAsFactors = FALSE
     )
+    
+    data_boys$SocialProtection <- lead(
+      ifelse(
+        x_val == 1, 
+        paste(predicted_val, " (", conf_interval, ")", sep = ""), NA)
+    )
+    data_boys <- na.omit(data_boys)
     
     # Add the data frame as rows to the combined_results data frame
     combined_results_boys <- rbind(combined_results_boys, data_boys)
