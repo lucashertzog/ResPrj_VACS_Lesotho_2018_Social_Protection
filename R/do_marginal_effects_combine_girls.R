@@ -6,6 +6,7 @@ combined_results_girls <- data.frame(
   x = numeric(),
   predicted = numeric(),
   confidence_interval = character(),
+  rel_dif = character(),
   stringsAsFactors = FALSE
 )
 
@@ -23,11 +24,15 @@ for (i in seq_along(
   conf_high_val <- round(df$conf.high * 100, 1)
   
   # Calculate the difference in predicted values and the confidence interval
+  # Absolute change
   dif_pred <- predicted_val[x_val == 1] - predicted_val[x_val == 0]
   
-  # Calculate the lower and upper bounds of the confidence interval
-  dif_conf_low_val <- dif_pred - (df$std.error * 1.96)
-  dif_conf_high_val <- dif_pred + (df$std.error * 1.96)
+  # Relative change
+  rel_dif <- predicted_val[x_val == 1] * 100 / predicted_val[x_val == 0] - 100
+
+  # # Calculate the lower and upper bounds of the confidence interval
+  # dif_conf_low_val <- dif_pred - (df$std.error * 1.96)
+  # dif_conf_high_val <- dif_pred + (df$std.error * 1.96)
   
   # Create a combined cell for the confidence interval
   conf_interval <- paste(conf_low_val, "–", conf_high_val)
@@ -43,15 +48,8 @@ for (i in seq_along(
       x_val == 1, 
       paste(predicted_val, " (", conf_interval, ")", sep = ""), 
       NA),
-    Diff.Prob. = paste(
-      dif_pred,
-      " (",
-      round(dif_conf_low_val, 1),
-      " – ",
-      round(dif_conf_high_val, 1),
-      ")",
-      sep = ""
-    ),
+    Diff.Prob. =dif_pred,
+    Rel.Diff. = round(rel_dif, 1),
     stringsAsFactors = FALSE
   )
   
