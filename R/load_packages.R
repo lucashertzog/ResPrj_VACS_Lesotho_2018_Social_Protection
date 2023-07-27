@@ -1,3 +1,12 @@
+#' Load packages for the pipeline
+#'
+#' @param do_it 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
 load_packages <- function(do_it = T){
   pkgs <- c("targets",
             "yaml",

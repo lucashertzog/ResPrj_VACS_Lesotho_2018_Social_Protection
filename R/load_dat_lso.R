@@ -1,9 +1,9 @@
-#' Title
+#' Load and clean data
 #'
 #' @param dir 
 #' @param dat 
 #'
-#' @return
+#' @return vacs_lso
 #' @export
 #'
 #' @examples

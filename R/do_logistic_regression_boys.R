@@ -1,3 +1,15 @@
+#' Create a list of results with logistic regression results (subset boys)
+#'
+#' @param outcome_var 
+#' @param pred_var 
+#' @param stratified_control_var 
+#' @param design_boys 
+#' @param boys 
+#'
+#' @return results_list_boys
+#' @export
+#'
+#' @examples
 do_logistic_regression_boys <- function(
     outcome_var,
     pred_var,

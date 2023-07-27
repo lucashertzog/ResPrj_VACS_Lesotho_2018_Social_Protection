@@ -1,4 +1,4 @@
-#' Title
+#' Declare survey design
 #'
 #' @param vacs_lso 
 #'

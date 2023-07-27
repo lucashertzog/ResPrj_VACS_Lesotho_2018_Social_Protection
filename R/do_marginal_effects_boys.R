@@ -1,3 +1,15 @@
+#' Compute the marginal effects and store them in a list for the subset (boys)
+#'
+#' @param outcome_var 
+#' @param pred_var 
+#' @param stratified_control_var 
+#' @param design_boys 
+#' @param boys 
+#'
+#' @return marginal_effects_list_boys
+#' @export
+#'
+#' @examples
 do_marginal_effects_boys <- function(
     outcome_var,
     pred_var,

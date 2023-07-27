@@ -1,4 +1,4 @@
-#' Title
+#' Declare survey design for subset with boys
 #'
 #' @param boys
 #'

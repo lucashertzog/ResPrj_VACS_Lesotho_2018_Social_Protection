@@ -1,5 +1,17 @@
-# Load packages
-library(ggplot2)
+#' Forest plot with results from regressions
+#'
+#' @param dir 
+#' @param dat 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+do_plot_forest <- function(
+    dir,
+    dat
+){
+
 png("data_derived/manuscript/figures/fig_forestplot.png", res = 250, height = 3000, width = 2500)
 # Load data
 data_path <- 'C:/Users/291828h/OneDrive - Curtin/projects/ResPrj_VACS_Lesotho_2018_Social_Protection/data_derived/f_plot.csv'
@@ -7,13 +19,13 @@ data <- read.csv(data_path)
 
 # Define variables
 variables_order_spaced <- rev(c(
-  "Enrolled in school",
-  "Educational attainment",
-  "Engaged in any paid work",
-  "Consistent condom use",
-  "Multiple sexual partners",
-  "Transactional sex",
-  "Child marriage"))
+  "Enrolled\nin school",
+  "Educational\nattainment",
+  "Engaged in\nany paid work",
+  "Consistent\ncondom use",
+  "Multiple\nsexual partners",
+  "Transactional\nsex",
+  "Child\nmarriage"))
 
 # Rename groups
 names(data)[names(data) == 'aOR_gov'] <- 'Government (Girls & Boys)'
@@ -36,8 +48,9 @@ p_columns <- names(data)[seq(5, length(data), by = 4)]
 positions <- 1:length(variables_order_spaced)
 
 # Colors and shape
-colors <- c('#0066CC', '#006666', '#FF3300', '#6666FF', '#00CC33', '#FF9900')
-shapes <- c(15, 17, 19, 24, 25, 18)
+# colors <- c('#0066CC', '#006666', '#FF3300', '#6666FF', '#00CC33', '#FF9900')
+colors <- rep('#000000', length(groups))  # All lines black
+shapes <- c(15, 17, 19, 0, 24, 21)
 
 # Offsets
 offsets <- seq(-0.3, 0.3, length.out = length(groups))
@@ -79,23 +92,38 @@ plot_data$p_label_face <- ifelse(plot_data$p < 0.05 & !is.na(plot_data$p), "bold
 
 
 # Plot
-ggplot(plot_data, aes(x = aOR, y = position, color = group)) +  # Use `position` directly as y aesthetic
-  geom_point(aes(shape = group), size = 3) +
-  geom_errorbarh(aes(xmin = lb, xmax = ub), height = 0.05, linewidth = plot_data$linewidth) + # Set the width of the error bars
+ggplot(plot_data, 
+       aes(x = aOR, 
+           y = position, 
+           color = group)) +
+  geom_point(aes(shape = group), 
+             size = 3) +
+  geom_errorbarh(aes(xmin = lb, 
+                     xmax = ub), 
+                 height = 0.05, 
+                 linewidth = plot_data$linewidth) + # Set the width of the error bars
   scale_shape_manual(values = shapes) +
   scale_color_manual(values = colors) +
-  geom_vline(xintercept = c(1), linetype = "dashed", color = "red") +
-  labs(x = 'Adjusted Odds Ratios (aOR)', y = '') +
-  theme_bw() +  # Add theme_linedraw here
-  theme(legend.position = "bottom") +
-  scale_y_reverse(breaks = positions, labels = variables_order_spaced) +  # Update to use continuous y scale
-  coord_cartesian(xlim = c(0, 10), ylim = c(min(positions) - 0.5, max(positions) + 0.5), clip = "off") +  # Adjust y limits
-  theme(legend.box = "horizontal") +
+  geom_vline(xintercept = c(1), 
+             linetype = "dashed", 
+             color = "red") +
+  labs(x = 'Adjusted Odds Ratios (aOR)', 
+       y = '') +
+  scale_y_reverse(breaks = positions, 
+                  labels = variables_order_spaced) +  # Update to use continuous y scale
+  coord_cartesian(xlim = c(0, 10), 
+                  ylim = c(min(positions) - 0.1, max(positions) + 0.1), 
+                  clip = "off") + 
+  scale_x_continuous(breaks = seq(0, 9, by = 1)) +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        legend.key.size = unit(1, "lines"),
+        axis.text.y = element_text(size = 14)) +
   geom_text(aes(label = paste0('p=', p_label, asterisks), 
                 x = 10, 
                 fontface = p_label_face), 
             hjust = 1, size = 4, show.legend = FALSE) +
-  theme(legend.key.size = unit(1.5, "lines")) +
   guides(color = guide_legend(title = NULL), shape = guide_legend(title = NULL))
 
 dev.off()
+}

@@ -1,4 +1,4 @@
-#' Title
+#' Select outcome variables
 #'
 #' @param design 
 #'

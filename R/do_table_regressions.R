@@ -1,8 +1,8 @@
-#' Title
+#' Create a table with regression outputs
 #'
 #' @param results_list, pred_var
 #'
-#' @return 
+#' @return combined_results_wide
 #' @export table_odds.docx
 #'
 #' @examples

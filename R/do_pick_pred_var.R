@@ -1,4 +1,4 @@
-#' Title
+#' Select exposure variables
 #'
 #' @param design 
 #'

@@ -1,3 +1,12 @@
+#' Create a table with spearman's correlations between outcomes
+#'
+#' @param outcome_var 
+#' @param vacs_lso 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 do_table_correlations <- function(
     outcome_var,
     vacs_lso

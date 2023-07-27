@@ -1,29 +1,68 @@
-# ResPrj_VACS_Lesotho_2019_Social_Protection
+# Violence Against Children and Youth Surveys: Data Analysis Pipeline
 
-## Pipeline Description
+This is a data analysis pipeline was created by Lucas Hertzog, Ph.D., 2023. It utilizes the `targets` package in R for defining and managing data processing and analysis tasks. 
 
-The pipeline includes loading and preprocessing the data, creating a survey design, performing logistic regression analysis, computing marginal effects, and generating tables and figures to summarise the results.
+## Overview
 
-The project is designed to provide a reproducible and organized approach to analyzing the data, making it easier to track and reproduce the analysis process.
+The pipeline is divided into several steps:
+1. Load the required data.
+2. Create subsets of data for girls and boys.
+3. Declare survey design.
+4. Select variables for the analysis.
+5. Perform logistic regression and calculate marginal effects.
+6. Combine the results.
+7. Generate tables for correlations, summary statistics, regressions, and marginal effects.
+8. Create relevant plots.
 
-This pipeline performs a series of data analysis tasks using the {targets} package in R. It follows the steps outlined below:
+## Dependencies
 
-1. **Load Data**: The data is loaded from the specified directory and file using the `load_dat_lso` function.
+This pipeline requires the following R packages:
+- targets
+- yaml
+- data.table
+- dplyr
+- ggeffects
+- survey
+- surveybootstrap
+- tidyr
+- purrr
+- ggplot2
+- flextable
+- officer
+- gtsummary
+- gt
+- Hmisc
+- haven
+- apaTables
 
-2. **Declare Survey Design**: The survey design is created using the loaded data with the `do_svy_design` function.
+## Usage
 
-3. **Select Variables**: The variables of interest for the analysis are selected using the `do_pick_outcome_var`, `do_pick_pred_var`, and `do_pick_control_var` functions.
+First, ensure all the required R packages mentioned above are installed.
 
-4. **Analysis**: Logistic regression is performed using the `do_logistic_regression` function, which uses the survey design and the selected variables.
+Then, source the required functions by running:
 
-5. **Compute Marginal Effects**: Marginal effects are computed using the `do_marginal_effects` function, which uses the logistic regression results and the selected variables.
+```
+lapply(list.files("R", full.names = TRUE), source)
+```
 
-6. **Tables**: The results are formatted into tables using the `do_table_regressions` and `do_table_marginal_effects` functions.
+Load the configurations for the pipeline:
 
-7. **Figures**: The results are visualized using the `do_plot_regressions` and `do_plot_marginal_effects` functions.
+```
+config <- yaml::read_yaml("config.yaml")
+```
 
-The pipeline is executed using the "targets" package, which manages the dependencies between the different steps and ensures efficient and reproducible computation.
+Finally, run the pipeline:
 
-To run the pipeline, ensure that the required packages are installed (listed in the `tar_option_set` function), and execute the pipeline using the `tar_make()` function.
+```
+tar_make()
+```
 
-For more details on each step, refer to the R scripts in the "R" directory and the configuration file "config.yaml".
+## Outputs
+
+The outputs of the pipeline include:
+- Logistic regression results and marginal effects for overall data, girls, and boys.
+- Combined results of the marginal effects.
+- Tables summarizing correlations, summary statistics, regressions, and marginal effects.
+- Plots such as forest plot and summary plot.
+
+The outputs are generated as `targets` in the pipeline and can be accessed using the `tar_read()` function.

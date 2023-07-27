@@ -1,3 +1,12 @@
+#' Combined results taken from the marginal effects list and prepare them to be
+#' exported (Subset girls)
+#'
+#' @param marginal_effects_list_girls 
+#'
+#' @return combined_results_girls
+#' @export
+#'
+#' @examples
 do_marginal_effects_combine_girls <- function(
     marginal_effects_list_girls
 ) {

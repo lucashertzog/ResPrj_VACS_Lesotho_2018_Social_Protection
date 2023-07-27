@@ -1,3 +1,12 @@
+#' Combined results taken from the marginal effects list and prepare them to be
+#' exported
+#' 
+#' @param marginal_effects_list 
+#'
+#' @return combined_results
+#' @export
+#'
+#' @examples
 do_marginal_effects_combine <- function(
     marginal_effects_list
 ) {

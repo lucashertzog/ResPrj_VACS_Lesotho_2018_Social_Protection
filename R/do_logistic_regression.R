@@ -1,4 +1,4 @@
-#' Title
+#' Create a list of results with logistic regression results
 #'
 #' @param design
 #'

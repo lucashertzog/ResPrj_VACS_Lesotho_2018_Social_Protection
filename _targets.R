@@ -1,9 +1,15 @@
+# Lucas Hertzog PhD, 2023
+# Pipeline
+# Load the targets package
 library(targets)
 
+# Source functions in the R subdirectory
 lapply(list.files("R", full.names = TRUE), source)
 
+# Load configurations
 config <- yaml::read_yaml("config.yaml")
 
+# Set the packages used
 tar_option_set(
   packages =
     c("targets",
@@ -27,6 +33,7 @@ tar_option_set(
   )
 
 
+# Create a list of targets
 list(
   ### LOAD DATA ####
   #### dat_lso ####
@@ -137,7 +144,7 @@ list(
     )
   )
   ,
-  # #### calc_logistic_regression_boys ####
+  #### calc_logistic_regression_boys ####
   tar_target(
     calc_logistic_regression_boys,
     do_logistic_regression_boys(
@@ -247,21 +254,22 @@ list(
       combined_results_boys
     )
   )
-  # ,
-  # ### FIGURES ####
-  # # #### plot_regressions ####
-  # # tar_target(
-  # #   plot_regressions,
-  # #   do_plot_regressions(
-  # #       calc_logistic_regression
-  # #   )
-  # # )
-  # # ,
-  # ### plot_marginal_effects ####
-  # tar_target(
-  #   plot_marginal_effects,
-  #   do_plot_marginal_effects(
-  #     combined_results
-  #   )
-  # )
+  ,
+  ### FIGURES ####
+  #### plot_forest ####
+  tar_target(
+    plot_forest,
+    do_plot_forest(
+        dir,
+        dat
+    )
+  )
+  ,
+  #### plot_summary ####
+  tar_target(
+    plot_summary,
+    do_plot_summary(
+      dat_svy_design
+    )
+  )
 )

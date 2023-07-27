@@ -1,8 +1,8 @@
-#' Title
+#' Compute the marginal effects and store them in a list
 #'
 #' @param outcome_var, pred_var, control_var, design 
 #'
-#' @return
+#' @return marginal_effects_list
 #' @export
 #'
 #' @examples
