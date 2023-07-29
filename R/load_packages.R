@@ -24,7 +24,11 @@ load_packages <- function(do_it = T){
             "gt",
             "Hmisc",
             "haven",
-            "apaTables"
+            "apaTables",
+            "sf",
+            "RColorBrewer",
+            "gridExtra",
+            "ggspatial"
             )
   ipak <- function(pkg){
     new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]

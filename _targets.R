@@ -28,7 +28,11 @@ tar_option_set(
       "gt",
       "Hmisc",
       "haven",
-      "apaTables"
+      "apaTables",
+      "sf",
+      "RColorBrewer",
+      "gridExtra",
+      "ggspatial"
     )
   )
 
@@ -270,6 +274,16 @@ list(
     plot_summary,
     do_plot_summary(
       dat_svy_design
+    )
+  )
+  ,
+  #### plot_map ####
+  tar_target(
+    plot_map,
+    do_plot_map(
+      dat_svy_design,
+      dat_svy_design_girls,
+      dat_svy_design_boys
     )
   )
 )
