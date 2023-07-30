@@ -1,6 +1,6 @@
 # Violence Against Children and Youth Surveys: Data Analysis Pipeline
 
-This is a data analysis pipeline was created by Lucas Hertzog, Ph.D., 2023. It utilizes the `targets` package in R for defining and managing data processing and analysis tasks. 
+This is a data analysis pipeline was created by Lucas Hertzog in 2023. It utilizes the `targets` package in R for defining and managing data processing and analysis tasks. 
 
 ## Overview
 
