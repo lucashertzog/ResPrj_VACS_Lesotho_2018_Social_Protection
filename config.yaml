@@ -1,16 +1,13 @@
 ## set directories ##
 # in #
-indir_lso: "C:/Users/291828h/OneDrive - Curtin/projects/ResPrj_VACS_Lesotho_2019_Social_Protection/data_provided" 
+indir_lso: "data_provided/" 
 indat_lso: "vacs_lso.csv"
 
 # out #
-outdir_lso: "C:/Users/291828h/OneDrive - Curtin/projects/ResPrj_VACS_Lesotho_2019_Social_Protection/data_derived"
+outdir_lso: "data_derived/"
 
 ## tables ##
 outdat_summary: "table_summary_stats.docx"
 outdat_correlation: "table_correlation.doc"
 outdat_log: "table_logistic_regression.docx"
 outdat_marg: "table_marginal_effects.docx"
-
-## figures ##
-outdat_plot_pp: "figure_pp.jpeg"

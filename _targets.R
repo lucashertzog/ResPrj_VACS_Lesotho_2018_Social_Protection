@@ -238,6 +238,17 @@ list(
     )
   )
   ,
+  #### table_summary_stats_supp ####
+  tar_target(
+    table_summary_stats_supp,
+    do_table_summary_stats_supp(
+      dat_outcome_var,
+      dat_pred_var,
+      dat_control_var,
+      dat_svy_design
+    )
+  )
+  ,
   #### table_regressions ####
   tar_target(
     table_regressions,
