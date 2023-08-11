@@ -7,7 +7,7 @@
 #' @param design        `svydesign` object representing the survey design.
 #'
 #' @return
-#' @export table_1.docx
+#' @export sup_table_summary_stats_n_gov.docx
 #'
 #' @examples
 
