@@ -70,4 +70,3 @@ do_table_summary_stats_supp <- function(
     save_as_docx(path = file.path(config$outdir_lso, "sup_table_summary_stats_n_gov.docx"))
   return(t)
 }
-
