@@ -4,7 +4,7 @@ This is a data analysis pipeline was created by Lucas Hertzog in 2023. It utiliz
 
 ## Overview
 
-The pipeline is divided into several steps:
+The pipeline is divided into:
 1. Load the required data.
 2. Create subsets of data for girls and boys.
 3. Declare survey design.
