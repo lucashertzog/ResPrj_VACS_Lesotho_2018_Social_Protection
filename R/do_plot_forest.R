@@ -12,7 +12,7 @@ do_plot_forest <- function(
     dat
 ){
 
-png("data_derived/manuscript/figures/fig_forestplot.png", res = 250, height = 3000, width = 2500)
+png("data_derived/fig_forestplot.png", res = 250, height = 3000, width = 2500)
 # Load data
 data_path <- 'C:/Users/291828h/OneDrive - Curtin/projects/ResPrj_VACS_Lesotho_2018_Social_Protection/data_derived/f_plot.csv'
 data <- read.csv(data_path)

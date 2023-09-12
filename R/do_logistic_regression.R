@@ -35,6 +35,15 @@ do_logistic_regression <- function(
         data = vacs_lso
       )
       
+      # Extract the variables used in the formula
+      used_vars <- all.vars(formula(model))
+      
+      # Subset the data for only used variables
+      sub_data <- design$variables[, used_vars, drop = FALSE]
+      
+      n <- sum(complete.cases(sub_data))
+      
+      
       # Extract adjusted odds ratios and round to 2 decimal places
       odds_ratios <- round(exp(coef(model)), 2)
       
@@ -75,7 +84,8 @@ do_logistic_regression <- function(
                                       ci_lower,
                                       ci_upper,
                                       p_values_formatted,
-                                      predictor = predictor)
+                                      predictor = predictor,
+                                      n = n)
       
       # Append the predictor results to the outcome results
       aOR <- paste0(odds_ratios, " (", ci_lower, " to ", ci_upper, ")")

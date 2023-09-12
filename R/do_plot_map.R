@@ -4,7 +4,7 @@ do_plot_map <- function(
     design_boys
     
 ){
-png("data_derived/manuscript/figures/fig_map.png", res = 250, height = 6000, width = 2000)
+png("data_derived/fig_map.png", res = 250, height = 6000, width = 2000)
 
 # Read the map data
 lso_map <- st_read("G:/My Drive/Projects/vacs-lesotho/GIS/interactive/LSO1.geojson")
@@ -46,6 +46,11 @@ lso_map_girls <- st_as_sf(lso_map_dt_girls)
 lso_map_boys <- st_as_sf(lso_map_dt_boys)
 # Convert back to sf object
 lso_map <- st_as_sf(lso_map_dt)
+
+# In case we want, save to shp
+# st_write(lso_map_girls, file.path(config$outdir_lso, "lso_girls.shp"))
+# st_write(lso_map_boys, file.path(config$outdir_lso, "lso_boys.shp"))
+# st_write(lso_map , file.path(config$outdir_lso, "lso.shp"))
 
 # Calculate the centroid of each district
 lso_map_centroid <- st_centroid(lso_map)

@@ -41,6 +41,7 @@ do_table_regressions <- function(
     CI_Lower = numeric(),
     CI_Upper = numeric(),
     p_values = character(),
+    n = numeric(),
     stringsAsFactors = FALSE
   )
   
@@ -51,6 +52,7 @@ do_table_regressions <- function(
     CI_Lower = numeric(),
     CI_Upper = numeric(),
     p_values = character(),
+    n = numeric(),
     stringsAsFactors = FALSE
   )
   
@@ -61,6 +63,7 @@ do_table_regressions <- function(
     CI_Lower = numeric(),
     CI_Upper = numeric(),
     p_values = character(),
+    n = numeric(),
     stringsAsFactors = FALSE
   )
   
@@ -77,6 +80,7 @@ do_table_regressions <- function(
       Girls_Boys = rep(label, nrow(df)),
       aOR_CI = paste0(df$odds_ratios, " (",df$ci_lower, " to ", df$ci_upper,")"),
       p_values = df$p_values_formatted,
+      n = df$n,
       stringsAsFactors = FALSE
     )
     
@@ -97,6 +101,7 @@ do_table_regressions <- function(
       Girls = rep(label, nrow(df)),
       aOR_CI = paste0(df$odds_ratios, " (",df$ci_lower, " to ", df$ci_upper,")"),
       p_values = df$p_values_formatted,
+      n = df$n,
       stringsAsFactors = FALSE
     )
     
@@ -117,6 +122,7 @@ do_table_regressions <- function(
       Boys = rep(label, nrow(df)),
       aOR_CI = paste0(df$odds_ratios, " (",df$ci_lower, " to ", df$ci_upper,")"),
       p_values = df$p_values_formatted,
+      n = df$n,
       stringsAsFactors = FALSE
     )
     
@@ -138,7 +144,8 @@ do_table_regressions <- function(
       "aOR (95% CI) ngov" = aOR_CI_sp_non_gov,
       "p-Value" = p_values_sp_non_gov,
       "aOR (95% CI) gov" = aOR_CI_sp_gov,
-      p_values_sp_gov
+      p_values_sp_gov,
+      n
       # ,
       # "aOR (95% CI) any" = aOR_CI_sp_any,
       # p_values_sp_any
@@ -153,7 +160,8 @@ do_table_regressions <- function(
       aOR_CI_sp_non_gov,
       p_values_sp_non_gov,
       aOR_CI_sp_gov,
-      p_values_sp_gov
+      p_values_sp_gov,
+      n
       # ,
       # aOR_CI_sp_any,
       # p_values_sp_any
@@ -168,7 +176,8 @@ do_table_regressions <- function(
       aOR_CI_sp_non_gov,
       p_values_sp_non_gov,
       aOR_CI_sp_gov,
-      p_values_sp_gov
+      p_values_sp_gov,
+      n
       # ,
       # aOR_CI_sp_any,
       # p_values_sp_any

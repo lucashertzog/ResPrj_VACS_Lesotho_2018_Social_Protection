@@ -10,7 +10,7 @@ do_plot_summary <- function(
     design
 ){
  
-png("data_derived/manuscript/figures/fig_summary_hist.png", res = 250, height = 3000, width = 3000)
+png("data_derived/fig_summary_hist.png", res = 250, height = 3000, width = 3000)
 
 variables <- c("hiv", "orphan", "sp_non_gov", "sp_gov", "edu_enrol", "edu_attainment",
                "edu_ecostr_work", "srh_condom_use", "srh_multiple_partners", 

@@ -4,7 +4,7 @@ indir_lso: "data_provided/"
 indat_lso: "vacs_lso.csv"
 
 # out #
-outdir_lso: "data_derived/"
+outdir_lso: "data_derived/main_model_with_n"
 
 ## tables ##
 outdat_summary: "table_summary_stats.docx"
