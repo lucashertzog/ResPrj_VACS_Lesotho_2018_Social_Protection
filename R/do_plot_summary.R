@@ -10,7 +10,7 @@ do_plot_summary <- function(
     design
 ){
  
-png("data_derived/fig_summary_hist.png", res = 250, height = 3000, width = 3000)
+png("data_derived/fig_summary_hist_fmale.png", res = 250, height = 3000, width = 3000)
 
 variables <- c("hiv", "orphan", "sp_non_gov", "sp_gov", "edu_enrol", "edu_attainment",
                "edu_ecostr_work", "srh_condom_use", "srh_multiple_partners", 
@@ -32,7 +32,7 @@ for (var in variables) {
       # Combine the results into a data frame
       df <- data.frame(
         Variable = var,
-        Sex = ifelse(proportion$sex == 0, "Boys", "Girls"),
+        Sex = ifelse(proportion$sex == 0, "Males", "Females"),
         Proportion = proportion[, var],
         LowerCI = ci[, 1],
         UpperCI = ci[, 2]
@@ -64,7 +64,7 @@ results$Variable <- var_map[results$Variable]
 results$Variable <- factor(results$Variable, levels = var_map[variables])
 
 # Reverse the order of the 'Sex' factor levels
-results$Sex <- factor(results$Sex, levels = c("Girls", "Boys"))
+results$Sex <- factor(results$Sex, levels = c("Females", "Males"))
 
 # Plot the proportions with error bars
 ggplot(results, aes(x = Sex, y = Proportion, fill = Sex)) +

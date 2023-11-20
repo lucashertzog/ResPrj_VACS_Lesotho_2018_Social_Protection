@@ -12,7 +12,7 @@ do_plot_forest <- function(
     dat
 ){
 
-png("data_derived/fig_forestplot.png", res = 250, height = 3000, width = 2500)
+png("data_derived/fig_forestplot_fmale.png", res = 250, height = 3000, width = 2500)
 # Load data
 data_path <- 'C:/Users/291828h/OneDrive - Curtin/projects/ResPrj_VACS_Lesotho_2018_Social_Protection/data_derived/f_plot.csv'
 data <- read.csv(data_path)
@@ -28,12 +28,12 @@ variables_order_spaced <- rev(c(
   "Child\nmarriage"))
 
 # Rename groups
-names(data)[names(data) == 'aOR_gov'] <- 'Government (Girls & Boys)'
-names(data)[names(data) == 'girls_gov_aOR'] <- 'Government (Girls)'
-names(data)[names(data) == 'boys_gov_aOR'] <- 'Government (Boys)'
-names(data)[names(data) == 'aOR_nongov'] <- 'Non-Government (Girls & Boys)'
-names(data)[names(data) == 'girls_nongov_aOR'] <- 'Non-Government (Girls)'
-names(data)[names(data) == 'boys_nongov_aOR'] <- 'Non-Government (Boys)'
+names(data)[names(data) == 'aOR_gov'] <- 'Government (Females & Males)'
+names(data)[names(data) == 'girls_gov_aOR'] <- 'Government (Females)'
+names(data)[names(data) == 'boys_gov_aOR'] <- 'Government (Males)'
+names(data)[names(data) == 'aOR_nongov'] <- 'Non-Government (Females & Males)'
+names(data)[names(data) == 'girls_nongov_aOR'] <- 'Non-Government (Females)'
+names(data)[names(data) == 'boys_nongov_aOR'] <- 'Non-Government (Males)'
 
 # Group names
 groups <- names(data)[seq(2, length(data), by = 4)]

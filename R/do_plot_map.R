@@ -4,7 +4,7 @@ do_plot_map <- function(
     design_boys
     
 ){
-png("data_derived/fig_map.png", res = 250, height = 6000, width = 2000)
+png("data_derived/fig_map_fmale.png", res = 250, height = 6000, width = 2000)
 
 # Read the map data
 lso_map <- st_read("G:/My Drive/Projects/vacs-lesotho/GIS/interactive/LSO1.geojson")
@@ -85,7 +85,7 @@ plot1 <- ggplot() +
 # Create the girls plot
 plot3 <- ggplot() +
   geom_sf(data = lso_map_girls, aes(fill = sp_gov), color = "black") +
-  scale_fill_gradientn(name = "Girls",
+  scale_fill_gradientn(name = "Females",
                        colours = brewer.pal(5, "YlGn"),
                        labels = function(x) paste0(x*100)) +
   scale_x_continuous(labels = function(x) paste0(x, "°E")) +
@@ -101,7 +101,7 @@ plot3 <- ggplot() +
 # Create the boys plot
 plot4 <- ggplot() +
   geom_sf(data = lso_map_boys, aes(fill = sp_gov), color = "black") +
-  scale_fill_gradientn(name = "Boys",
+  scale_fill_gradientn(name = "Males",
                        colours = brewer.pal(5, "Blues"),
                        labels = function(x) paste0(x*100)) +
   scale_x_continuous(labels = function(x) paste0(x, "°E")) +
