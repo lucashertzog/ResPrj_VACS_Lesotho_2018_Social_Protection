@@ -15,6 +15,15 @@ do_table_regressions <- function(
 
 ){
 
+  tar_load(calc_logistic_regression)
+  tar_load(calc_logistic_regression_girls)
+  tar_load(calc_logistic_regression_boys)
+  tar_load(dat_pred_var)
+  results_list = calc_logistic_regression
+  results_list_girls = calc_logistic_regression_girls
+  results_list_boys = calc_logistic_regression_boys
+  pred_var = dat_pred_var
+  
 # List of data frame names and corresponding labels
   df_labels <- data.frame(
     df_name = c("edu_enrol",
@@ -134,73 +143,52 @@ do_table_regressions <- function(
   combined_results <- combined_results[combined_results$Rownames %in% pred_var, ]
   combined_results_girls <- combined_results_girls[combined_results_girls$Rownames %in% pred_var, ]
   combined_results_boys <- combined_results_boys[combined_results_boys$Rownames %in% pred_var, ]
+
+  setDT(combined_results)
+  setDT(combined_results_girls)
+  setDT(combined_results_boys)
   
-  # Convert combined_results to wide format
-  combined_results_wide <- combined_results %>%
-    pivot_wider(names_from = Rownames,
-                values_from = c(aOR_CI, p_values)) %>%
-    select(
-      "Girls & Boys" = Girls_Boys,
-      "aOR (95% CI) ngov" = aOR_CI_sp_non_gov,
-      "p-Value" = p_values_sp_non_gov,
-      "aOR (95% CI) gov" = aOR_CI_sp_gov,
-      p_values_sp_gov,
-      "aOR (95% CI) safe school" = aOR_CI_safe_school,
-      "p-Value safe school" = p_values_safe_school,
-      "aOR (95% CI) parenting" = aOR_CI_parenting,
-      "p-Value parenting" = p_values_parenting,
-      "aOR (95% CI) gender norms" = aOR_CI_gender_norms,
-      "p-Value gender norms" = p_values_gender_norms
-      ,
-      n
-      # ,
-      # "aOR (95% CI) any" = aOR_CI_sp_any,
-      # p_values_sp_any
-    )
+  # wide
+  combined_results_wide <- dcast(combined_results, 
+                     Girls_Boys ~ Rownames, 
+                     value.var = c("aOR_CI", "p_values"),
+                     sep = " ")
   
-  # Convert combined_results_girls to wide format
-  combined_results_girls_wide <- combined_results_girls %>%
-    pivot_wider(names_from = Rownames,
-                values_from = c(aOR_CI, p_values)) %>%
-    select(
-      Girls,
-      aOR_CI_sp_non_gov,
-      p_values_sp_non_gov,
-      aOR_CI_sp_gov,
-      p_values_sp_gov,
-      aOR_CI_safe_school,
-      p_values_safe_school,
-      aOR_CI_parenting,
-      p_values_parenting,
-      aOR_CI_gender_norms,
-      p_values_gender_norms,
-      n
-      # ,
-      # aOR_CI_sp_any,
-      # p_values_sp_any
-    )
+  combined_results_girls_wide <- dcast(combined_results_girls, 
+                                      Girls ~ Rownames, 
+                                      value.var = c("aOR_CI", "p_values"),
+                                      sep = " ")
   
-  # Convert combined_results_boys to wide format
-  combined_results_boys_wide <- combined_results_boys %>%
-    pivot_wider(names_from = Rownames,
-                values_from = c(aOR_CI, p_values)) %>%
-    select(
-      Boys,
-      aOR_CI_sp_non_gov,
-      p_values_sp_non_gov,
-      aOR_CI_sp_gov,
-      p_values_sp_gov,
-      aOR_CI_safe_school,
-      p_values_safe_school,
-      aOR_CI_parenting,
-      p_values_parenting,
-      aOR_CI_gender_norms,
-      p_values_gender_norms,
-      n
-      # ,
-      # aOR_CI_sp_any,
-      # p_values_sp_any
-    )
+  combined_results_boys_wide <- dcast(combined_results_boys, 
+                                       Boys ~ Rownames, 
+                                       value.var = c("aOR_CI", "p_values"),
+                                       sep = " ")
+  
+
+  setcolorder(combined_results_boys_wide, 
+              c("Boys", 
+                "aOR_CI gender_norms", "p_values gender_norms",
+                "aOR_CI parenting", "p_values parenting",
+                "aOR_CI safe_school", "p_values safe_school",
+                "aOR_CI sp_gov", "p_values sp_gov",
+                "aOR_CI sp_non_gov", "p_values sp_non_gov"))
+  
+  setcolorder(combined_results_wide, 
+              c("Girls_Boys",
+                "aOR_CI gender_norms", "p_values gender_norms",
+                "aOR_CI parenting", "p_values parenting",
+                "aOR_CI safe_school", "p_values safe_school",
+                "aOR_CI sp_gov", "p_values sp_gov",
+                "aOR_CI sp_non_gov", "p_values sp_non_gov"))
+  
+  setcolorder(combined_results_girls_wide, 
+              c("Girls",
+                "aOR_CI gender_norms", "p_values gender_norms",
+                "aOR_CI parenting", "p_values parenting",
+                "aOR_CI safe_school", "p_values safe_school",
+                "aOR_CI sp_gov", "p_values sp_gov",
+                "aOR_CI sp_non_gov", "p_values sp_non_gov"))
+  
   
   # Create a flextable object for each combined results data frame
   ft_combined <- flextable::flextable(combined_results_wide)

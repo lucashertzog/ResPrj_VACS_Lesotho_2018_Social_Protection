@@ -22,3 +22,4 @@ tar_visnetwork(targets_only = T,
 
 # Run the pipeline
 tar_make()
+
