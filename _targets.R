@@ -159,96 +159,96 @@ list(
     )
   )
   ,
-  #### calc_marginal_effects ####
-  tar_target(
-    calc_marginal_effects,
-    do_marginal_effects(
-      dat_outcome_var,
-      dat_pred_var,
-      dat_control_var,
-      dat_svy_design
-    )
-  )
-  ,
-  #### calc_marginal_effects_girls ####
-  tar_target(
-    calc_marginal_effects_girls,
-    do_marginal_effects_girls(
-      dat_outcome_var,
-      dat_pred_var,
-      dat_stratified_control_var,
-      dat_svy_design_girls
-    )
-  )
-  ,
-  #### calc_marginal_effects_boys ####
-  tar_target(
-    calc_marginal_effects_boys,
-    do_marginal_effects_boys(
-      dat_outcome_var,
-      dat_pred_var,
-      dat_stratified_control_var,
-      dat_svy_design_boys
-    )
-  )
-  ,
-  ### COMBINE RESULTS FOR OUTPUTS ####
-  #### combined_results ####
-  tar_target(
-    combined_results,
-    do_marginal_effects_combine(
-      calc_marginal_effects
-    )
-  )
-  ,
-  #### combined_results_girls ####
-  tar_target(
-    combined_results_girls,
-    do_marginal_effects_combine_girls(
-      calc_marginal_effects_girls
-    )
-  )
-  ,
-  #### combined_results_girls ####
-  tar_target(
-    combined_results_boys,
-    do_marginal_effects_combine_boys(
-      calc_marginal_effects_boys
-    )
-  )
-  ,
-  ### TABLES ####
-  #### table_correlations ####
-  tar_target(
-    table_correlations,
-    do_table_correlations(
-      dat_outcome_var,
-      dat_lso
-    )
-  )
-  ,
-  #### table_summary_stats ####
-  tar_target(
-    table_summary_stats,
-    do_table_summary_stats(
-      dat_outcome_var,
-      dat_pred_var,
-      dat_control_var,
-      dat_svy_design
-    )
-  )
-  ,
-  #### table_summary_stats_supp ####
-  tar_target(
-    table_summary_stats_supp,
-    do_table_summary_stats_supp(
-      dat_outcome_var,
-      dat_pred_var,
-      dat_control_var,
-      dat_svy_design
-    )
-  )
-  ,
+  # #### calc_marginal_effects ####
+  # tar_target(
+  #   calc_marginal_effects,
+  #   do_marginal_effects(
+  #     dat_outcome_var,
+  #     dat_pred_var,
+  #     dat_control_var,
+  #     dat_svy_design
+  #   )
+  # )
+  # ,
+  # #### calc_marginal_effects_girls ####
+  # tar_target(
+  #   calc_marginal_effects_girls,
+  #   do_marginal_effects_girls(
+  #     dat_outcome_var,
+  #     dat_pred_var,
+  #     dat_stratified_control_var,
+  #     dat_svy_design_girls
+  #   )
+  # )
+  # ,
+  # #### calc_marginal_effects_boys ####
+  # tar_target(
+  #   calc_marginal_effects_boys,
+  #   do_marginal_effects_boys(
+  #     dat_outcome_var,
+  #     dat_pred_var,
+  #     dat_stratified_control_var,
+  #     dat_svy_design_boys
+  #   )
+  # )
+  # ,
+  # ### COMBINE RESULTS FOR OUTPUTS ####
+  # #### combined_results ####
+  # tar_target(
+  #   combined_results,
+  #   do_marginal_effects_combine(
+  #     calc_marginal_effects
+  #   )
+  # )
+  # ,
+  # #### combined_results_girls ####
+  # tar_target(
+  #   combined_results_girls,
+  #   do_marginal_effects_combine_girls(
+  #     calc_marginal_effects_girls
+  #   )
+  # )
+  # ,
+  # #### combined_results_girls ####
+  # tar_target(
+  #   combined_results_boys,
+  #   do_marginal_effects_combine_boys(
+  #     calc_marginal_effects_boys
+  #   )
+  # )
+  # ,
+  # ### TABLES ####
+  # #### table_correlations ####
+  # tar_target(
+  #   table_correlations,
+  #   do_table_correlations(
+  #     dat_outcome_var,
+  #     dat_lso
+  #   )
+  # )
+  # ,
+  # #### table_summary_stats ####
+  # tar_target(
+  #   table_summary_stats,
+  #   do_table_summary_stats(
+  #     dat_outcome_var,
+  #     dat_pred_var,
+  #     dat_control_var,
+  #     dat_svy_design
+  #   )
+  # )
+  # ,
+  # #### table_summary_stats_supp ####
+  # tar_target(
+  #   table_summary_stats_supp,
+  #   do_table_summary_stats_supp(
+  #     dat_outcome_var,
+  #     dat_pred_var,
+  #     dat_control_var,
+  #     dat_svy_design
+  #   )
+  # )
+  # ,
   #### table_regressions ####
   tar_target(
     table_regressions,
@@ -259,42 +259,42 @@ list(
       dat_pred_var
     )
   )
-  ,
-  #### table_marginal_effects ####
-  tar_target(
-    table_marginal_effects,
-    do_table_marginal_effects(
-      combined_results,
-      combined_results_girls,
-      combined_results_boys
-    )
-  )
-  ,
-  ### FIGURES ####
-  #### plot_forest ####
-  tar_target(
-    plot_forest,
-    do_plot_forest(
-        dir,
-        dat
-    )
-  )
-  ,
-  #### plot_summary ####
-  tar_target(
-    plot_summary,
-    do_plot_summary(
-      dat_svy_design
-    )
-  )
-  ,
-  #### plot_map ####
-  tar_target(
-    plot_map,
-    do_plot_map(
-      dat_svy_design,
-      dat_svy_design_girls,
-      dat_svy_design_boys
-    )
-  )
+  # ,
+  # #### table_marginal_effects ####
+  # tar_target(
+  #   table_marginal_effects,
+  #   do_table_marginal_effects(
+  #     combined_results,
+  #     combined_results_girls,
+  #     combined_results_boys
+  #   )
+  # )
+  # ,
+  # ### FIGURES ####
+  # #### plot_forest ####
+  # tar_target(
+  #   plot_forest,
+  #   do_plot_forest(
+  #       dir,
+  #       dat
+  #   )
+  # )
+  # ,
+  # #### plot_summary ####
+  # tar_target(
+  #   plot_summary,
+  #   do_plot_summary(
+  #     dat_svy_design
+  #   )
+  # )
+  # ,
+  # #### plot_map ####
+  # tar_target(
+  #   plot_map,
+  #   do_plot_map(
+  #     dat_svy_design,
+  #     dat_svy_design_girls,
+  #     dat_svy_design_boys
+  #   )
+  # )
 )

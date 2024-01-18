@@ -1,10 +1,10 @@
 ## set directories ##
 # in #
 indir_lso: "data_provided/" 
-indat_lso: "vacs_lso.csv"
+indat_lso: "vacs_lso_parenting.csv"
 
 # out #
-outdir_lso: "data_derived/main_model_with_n"
+outdir_lso: "data_derived/parenting_model"
 
 ## tables ##
 outdat_summary: "table_summary_stats.docx"
